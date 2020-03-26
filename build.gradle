@@ -2,9 +2,10 @@ buildscript {
     repositories {
         jcenter()
     }
-    
+
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.4'
     }
 }
 
@@ -12,6 +13,7 @@ apply plugin: 'kotlin'
 apply plugin: 'application'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
+apply plugin: 'com.github.johnrengelman.shadow'
 
 group 'homedoor'
 version '0.0.1'
@@ -20,6 +22,17 @@ mainClassName = "io.ktor.server.netty.EngineMain"
 jar {
     baseName = 'hmu2020'
     version = '1.0'
+    manifest {
+        attributes(
+                'Main-Class': mainClassName
+        )
+    }
+}
+
+shadowJar {
+    manifest {
+        attributes 'Main-Class': mainClassName
+    }
 }
 
 sourceSets {
@@ -43,6 +56,6 @@ dependencies {
     compile "io.ktor:ktor-server-core:$ktor_version"
     compile "io.ktor:ktor-websockets:$ktor_version"
     compile "io.ktor:ktor-gson:$ktor_version"
-    
+
     testCompile "io.ktor:ktor-server-tests:$ktor_version"
 }

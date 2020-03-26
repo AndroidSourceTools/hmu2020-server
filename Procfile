@@ -1,1 +1,1 @@
-web: java -jar build/libs/hmu2020-1.0.jar
+web:    java -jar target/helloworld.jar
