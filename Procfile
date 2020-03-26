@@ -1,1 +1,1 @@
-web: cd server && ./gradelw run
+web: java -jar build/libs/hmu2020-1.0.jar
